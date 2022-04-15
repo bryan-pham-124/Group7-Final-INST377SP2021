@@ -2,25 +2,13 @@
 import express from 'express';
 import sequelize from 'sequelize';
 
-
 import db from '../database/initializeDB.js';
-import bpRoutes from './bpRoutes.js'
-import etRoutes from './etRoutes.js'
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
   res.send('Welcome to the UMD Dining API!');
 });
-
-
-/* BP Routes - Food */
-
-router.use('/food', bpRoutes);
- 
-/* ET Routes - Dining Hall */
-
-router.use('/dining', etRoutes);
 
 /// /////////////////////////////////
 /// ////Dining Hall Endpoints////////
@@ -32,7 +20,7 @@ router.get('/dining', async (req, res) => {
     res.json(reply);
   } catch (err) {
     console.error(err);
-    res.send('Server error');
+    res.error('Server error');
   }
 });
 
@@ -47,7 +35,7 @@ router.get('/dining/:hall_id', async (req, res) => {
     res.json(hall);
   } catch (err) {
     console.error(err);
-    res.send('Server error');
+    res.error('Server error');
   }
 });
 
@@ -231,86 +219,7 @@ router.get('/restrictions/:restriction_id', async (req, res) => {
     res.error('Server error');
   }
 });
-/* EE Routes - Dining Hall */
 
-router.use('/dining', etRoutes);
-
-/// /////////////////////////////////
-/// ////Hall ScheduleEndpoints////////
-/// /////////////////////////////////
-router.get('/hall_schedule', async (req, res) => {
-  try {
-    const schedules = await db.HallSchedule.findAll();
-    const reply = schedules.length > 0 ? { data: schedules } : { message: 'no results found' };
-    res.json(reply);
-  } catch (err) {
-    console.error(err);
-    res.send('Server error');
-  }
-});
-
-router.get('/hall_schedule/:schedule_id', async (req, res) => {
-  try {
-    const hall = await db.HallSchedule.findAll({
-      where: {
-        hall_id: req.params.hall_id
-      }
-    });
-
-    res.json(hall);
-  } catch (err) {
-    console.error(err);
-    res.send('Server error');
-  }
-});
-
-router.post('/hall_schedule', async (req, res) => {
-  const schedules = await db.HallSchedule.findAll();
-  const currentId = (await schedules.length) + 1;
-  try {
-    const newSchedule = await db.HallSchedule.create({
-      schedule_id: currentId,
-      hours: req.body.hours,
-    });
-    res.json(newDining);
-  } catch (err) {
-    console.error(err);
-    res.error('Server error');
-  }
-});
-
-router.delete('/hall_schedule/:schedule_id', async (req, res) => {
-  try {
-    await db.HallSchedule.destroy({
-      where: {
-        schedule_id: req.params.hall_id
-      }
-    });
-    res.send('Successfully Deleted');
-  } catch (err) {
-    console.error(err);
-    res.error('Server error');
-  }
-});
-
-router.put('/hall_schedule', async (req, res) => {
-  try {
-    await db.HallSchedule.update(
-      {
-        hours: req.body.hours
-      },
-      {
-        where: {
-          schedule_id: req.body.schedule_id
-        }
-      }
-    );
-    res.send('Successfully Updated');
-  } catch (err) {
-    console.error(err);
-    res.error('Server error');
-  }
-});
 /// //////////////////////////////////
 /// ///////Custom SQL Endpoint////////
 /// /////////////////////////////////
