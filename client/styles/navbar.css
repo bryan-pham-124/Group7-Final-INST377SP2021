@@ -1,4 +1,5 @@
-/* Styles by Bryan Pham */
+/*Navigation Bar */
+
 body {
     background-color: #FFD5A4;
     margin: 0px;
@@ -8,7 +9,6 @@ body {
     justify-items: end;
     position: relative;
 }
-
 
 /* Navbar section start*/
 
@@ -24,7 +24,7 @@ body {
 /* Make navbar appear on the bottom */
 .navbar-container {
     display: flex;
-    width: 98.5vw;
+    width: 98.7vw;
     margin: 0px;
     bottom: 0px;
     position: fixed;
@@ -62,6 +62,32 @@ body {
 /* Navbar section end*/
 
 
+/*Custom scrollbar w3 schools*/
+
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+    background-color: white;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+     
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(39, 39, 39); 
+    border-radius: 10px;
+    border: 1px solid white;
+  }
+  
+ 
+
+/*Custom scrollbar end */
+
+
 @media only screen and (min-width: 960px) {
     .navbar-container {
         top: 0px;
@@ -69,10 +95,10 @@ body {
         background-color: #FFD66C !important;
     }
     .navbar {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         font-size: 15px;
     }
     .navbar-elm{
-        width: 150px;
+        width: 250px;
     }
 }

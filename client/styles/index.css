@@ -1,6 +1,6 @@
-/* Styles by Bryan Pham */
+/*Main Page */
 
-body {
+.body {
     background-color: #FFD5A4;
     margin: 0px;
     font-family: 'Poppins', sans-serif;
@@ -148,7 +148,7 @@ body {
     font-size: 20px;
     margin-bottom: 20px;
     padding: 40px;
-    height: 450px;
+    height: 400px;
 }
 
 .result-entry .entry-header {
@@ -311,19 +311,7 @@ body {
 /* Card section end */
  
 @media only screen and (min-width: 960px) {
-    .navbar-container {
-        top: 0px;
-        position: relative;
-        background-color: #FFD66C !important;
-    }
-    .navbar {
-        grid-template-columns: repeat(4, 1fr);
-        font-size: 15px;
-    }
-    .navbar-elm{
-        width: 150px;
-    }
-
+   
 
     .search-bar-container {
         margin-top: 140px;

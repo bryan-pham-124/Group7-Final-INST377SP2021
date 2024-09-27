@@ -6,6 +6,8 @@ import sequelize from 'sequelize';
 import db from '../database/initializeDB.js';
 import bpRoutes from './bpRoutes.js'
 import etRoutes from './etRoutes.js'
+import kkRoutes from './kkRoutes.js';
+
 
 const router = express.Router();
 
@@ -21,6 +23,13 @@ router.use('/food', bpRoutes);
 /* ET Routes - Dining Hall */
 
 router.use('/dining', etRoutes);
+
+/* KK routes - Restrictions */
+
+router.use('/restrictions', kkRoutes);
+
+/* EE Routes - Dining Hall */
+router.use('/schedule', eeRoutes);
 
 /// /////////////////////////////////
 /// ////Dining Hall Endpoints////////
@@ -231,7 +240,7 @@ router.get('/restrictions/:restriction_id', async (req, res) => {
     res.error('Server error');
   }
 });
-/* EE Routes - Dining Hall */
+
 
 router.use('/dining', etRoutes);
 
